@@ -1,3 +1,4 @@
 jupyter
 requests
 python-dotenv
+nbconvert
