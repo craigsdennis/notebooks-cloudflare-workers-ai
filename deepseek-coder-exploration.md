@@ -87,12 +87,10 @@ inference = response.json()
 code = inference["result"]["response"]
 
 display(Markdown(f"""
-````
 ```python
 {prompt}
 {code.strip()}
 ```
-````
 """))
 ```
 
