@@ -2,7 +2,7 @@
 
 Models come in different shapes and sizes, and choosing the right one for the task, can cause analysis paralysis.
 
-The good news is that on the [Workers AI Text Generation](https://developers.cloudflare.com/workers-ai/models/text-generation/#prompting) interface is always the same, no matter which model you choose.
+The good news is that on the [Workers AI Text Generation](/workers-ai/models/text-generation/#prompting) interface is always the same, no matter which model you choose.
 
 In an effort to aid you in your journey of finding the right model, this notebook will help you get to know your options in a speed dating type of scenario.
 
@@ -47,6 +47,7 @@ If you want to add these files to your environment, you can create a new file na
 CLOUDFLARE_API_TOKEN="YOUR-TOKEN"
 CLOUDFLARE_ACCOUNT_ID="YOUR-ACCOUNT-ID"
 ```
+
 
 ```python
 if "CLOUDFLARE_API_TOKEN" in os.environ:
@@ -100,7 +101,7 @@ def speed_date(models, questions):
 
 Who better to tell you about the specific models than themselves?!
 
-The timing here is specific to the entire completion, but remember all Text Generation models on [Workers AI support streaming](https://developers.cloudflare.com/workers-ai/models/text-generation/#using-streaming).
+The timing here is specific to the entire completion, but remember all Text Generation models on [Workers AI support streaming](/workers-ai/models/text-generation/#using-streaming).
 
 
 ```python
@@ -139,7 +140,7 @@ speed_date(models, questions)
 
 
 
-_Generated in *4.59* seconds_
+_Generated in *4.45* seconds_
 
 
 
@@ -156,7 +157,7 @@ _Generated in *4.59* seconds_
 
 
 
-_Generated in *5.78* seconds_
+_Generated in *3.63* seconds_
 
 
 
@@ -182,7 +183,7 @@ _Generated in *5.78* seconds_
 
 
 
-_Generated in *1.89* seconds_
+_Generated in *2.35* seconds_
 
 
 
@@ -197,7 +198,7 @@ _Generated in *1.89* seconds_
 
 
 
-_Generated in *3.07* seconds_
+_Generated in *4.33* seconds_
 
 
 
@@ -223,7 +224,7 @@ _Generated in *3.07* seconds_
 
 
 
-_Generated in *2.27* seconds_
+_Generated in *1.90* seconds_
 
 
 
@@ -238,7 +239,7 @@ _Generated in *2.27* seconds_
 
 
 
-_Generated in *5.18* seconds_
+_Generated in *3.15* seconds_
 
 
 
@@ -266,7 +267,7 @@ Remember, these are just a few examples of my strengths, as I have many capabili
 
 
 
-_Generated in *3.73* seconds_
+_Generated in *3.01* seconds_
 
 
 
@@ -283,7 +284,7 @@ Remember, these are just a few examples, and your use cases may vary depending o
 
 
 
-_Generated in *3.39* seconds_
+_Generated in *2.92* seconds_
 
 
 
@@ -313,7 +314,7 @@ So, what can I help you with today? 😊
 
 
 
-_Generated in *8.02* seconds_
+_Generated in *7.89* seconds_
 
 
 
@@ -332,7 +333,7 @@ That's me in a nutshell! I'm ready to help with a wide range of tasks, so feel f
 
 
 
-_Generated in *10.63* seconds_
+_Generated in *10.28* seconds_
 
 
 
@@ -382,7 +383,7 @@ Perdón, ¿cómo llegar al baño?"
 
 
 
-_Generated in *1.18* seconds_
+_Generated in *1.51* seconds_
 
 
 
@@ -397,7 +398,7 @@ Please note that this translation might not be perfect due to the limitations of
 
 
 
-_Generated in *1.54* seconds_
+_Generated in *3.07* seconds_
 
 
 
@@ -410,7 +411,7 @@ _Generated in *1.54* seconds_
 
 
 
-_Generated in *1.44* seconds_
+_Generated in *2.21* seconds_
 
 
 
@@ -423,7 +424,7 @@ In a Heavy New York accent from the Bronx, you would say "Pardon me, wich way ta
 
 
 
-_Generated in *4.71* seconds_
+_Generated in *1.10* seconds_
 
 
 
@@ -436,7 +437,7 @@ Quería decir que realmente aprecio a usted, simplemente como eres.
 
 
 
-_Generated in *1.39* seconds_
+_Generated in *1.66* seconds_
 
 
 
@@ -449,7 +450,7 @@ Je voulais juste dire que je t'apprécie, simplement comme toi es, tel que tu es
 
 
 
-_Generated in *1.56* seconds_
+_Generated in *1.39* seconds_
 
 
 
@@ -464,7 +465,7 @@ Please note that this translation may not be entirely accurate due to the inform
 
 
 
-_Generated in *3.12* seconds_
+_Generated in *3.85* seconds_
 
 
 
@@ -479,7 +480,7 @@ Please note that this translation may not be perfect due to the limitations of m
 
 
 
-_Generated in *2.47* seconds_
+_Generated in *2.40* seconds_
 
 
 
@@ -494,7 +495,7 @@ Please note that the translation might not be perfect due to the informal nature
 
 
 
-_Generated in *1.89* seconds_
+_Generated in *3.02* seconds_
 
 
 
@@ -509,7 +510,7 @@ Please note that the translation might not be perfect, as some expressions might
 
 
 
-_Generated in *3.52* seconds_
+_Generated in *2.88* seconds_
 
 
 
@@ -524,7 +525,7 @@ Please note that the translation might not be perfect due to the contextual diff
 
 
 
-_Generated in *1.58* seconds_
+_Generated in *3.66* seconds_
 
 
 
@@ -539,7 +540,7 @@ Please note that this translation is not perfect, as it still retains the origin
 
 
 
-_Generated in *2.83* seconds_
+_Generated in *3.44* seconds_
 
 
 
@@ -563,7 +564,7 @@ _Generated in *2.83* seconds_
 
 
 
-_Generated in *1.08* seconds_
+_Generated in *1.04* seconds_
 
 
 
@@ -576,7 +577,7 @@ _Generated in *1.08* seconds_
 
 
 
-_Generated in *2.55* seconds_
+_Generated in *1.09* seconds_
 
 
 
@@ -589,7 +590,7 @@ _Generated in *2.55* seconds_
 
 
 
-_Generated in *1.68* seconds_
+_Generated in *0.56* seconds_
 
 
 
@@ -602,7 +603,7 @@ _Generated in *1.68* seconds_
 
 
 
-_Generated in *1.17* seconds_
+_Generated in *2.05* seconds_
 
 
 
@@ -615,7 +616,7 @@ _Generated in *1.17* seconds_
 
 
 
-_Generated in *1.93* seconds_
+_Generated in *0.91* seconds_
 
 
 
@@ -628,7 +629,7 @@ _Generated in *1.93* seconds_
 
 
 
-_Generated in *2.19* seconds_
+_Generated in *0.87* seconds_
 
 
 
@@ -641,7 +642,7 @@ _Generated in *2.19* seconds_
 
 
 
-_Generated in *2.40* seconds_
+_Generated in *1.50* seconds_
 
 
 
@@ -654,7 +655,7 @@ _Generated in *2.40* seconds_
 
 
 
-_Generated in *1.34* seconds_
+_Generated in *2.61* seconds_
 
 
 
@@ -667,7 +668,7 @@ _Generated in *1.34* seconds_
 
 
 
-_Generated in *2.13* seconds_
+_Generated in *1.44* seconds_
 
 
 
@@ -680,7 +681,7 @@ _Generated in *2.13* seconds_
 
 
 
-_Generated in *1.52* seconds_
+_Generated in *2.14* seconds_
 
 
 
@@ -693,7 +694,7 @@ _Generated in *1.52* seconds_
 
 
 
-_Generated in *2.27* seconds_
+_Generated in *1.27* seconds_
 
 
 
@@ -706,7 +707,7 @@ _Generated in *2.27* seconds_
 
 
 
-_Generated in *2.50* seconds_
+_Generated in *1.51* seconds_
 
 
 
@@ -757,7 +758,7 @@ This book offers insights and practical tips on how to improve learning and rete
 
 
 
-_Generated in *8.34* seconds_
+_Generated in *8.44* seconds_
 
 
 
@@ -772,7 +773,7 @@ This science fiction novel follows an unwitting human named Arthur Dent as he tr
 
 
 
-_Generated in *6.52* seconds_
+_Generated in *7.31* seconds_
 
 
 
@@ -787,7 +788,7 @@ _Generated in *6.52* seconds_
 
 
 
-_Generated in *8.25* seconds_
+_Generated in *8.34* seconds_
 
 
 
@@ -811,7 +812,7 @@ _Generated in *8.25* seconds_
 
 
 
-_Generated in *3.89* seconds_
+_Generated in *2.04* seconds_
 
 
 
@@ -824,7 +825,7 @@ _Generated in *3.89* seconds_
 
 
 
-_Generated in *2.26* seconds_
+_Generated in *3.50* seconds_
 
 
 
@@ -837,7 +838,7 @@ _Generated in *2.26* seconds_
 
 
 
-_Generated in *2.37* seconds_
+_Generated in *4.04* seconds_
 
 
 
@@ -861,7 +862,7 @@ _Generated in *2.37* seconds_
 
 
 
-_Generated in *2.86* seconds_
+_Generated in *2.54* seconds_
 
 
 
@@ -874,7 +875,7 @@ _Generated in *2.86* seconds_
 
 
 
-_Generated in *2.95* seconds_
+_Generated in *2.91* seconds_
 
 
 
@@ -887,7 +888,7 @@ _Generated in *2.95* seconds_
 
 
 
-_Generated in *3.64* seconds_
+_Generated in *4.66* seconds_
 
 
 
@@ -932,7 +933,7 @@ speed_date(proud_content_creator_models, questions)
 
 
 
-_Generated in *3.48* seconds_
+_Generated in *2.90* seconds_
 
 
 
@@ -959,7 +960,7 @@ I hope these suggestions help! Let me know if you have any other questions or if
 
 
 
-_Generated in *4.77* seconds_
+_Generated in *5.11* seconds_
 
 
 
@@ -972,7 +973,7 @@ _Generated in *4.77* seconds_
 
 
 
-_Generated in *1.01* seconds_
+_Generated in *1.13* seconds_
 
 
 
@@ -1002,7 +1003,7 @@ As their love story unfolds, they must navigate the treacherous waters of a soci
 
 
 
-_Generated in *6.05* seconds_
+_Generated in *6.64* seconds_
 
 
 
@@ -1017,7 +1018,7 @@ Tagline: "Say goodbye to cable chaos and hello to a clutter-free workspace with 
 
 
 
-_Generated in *1.70* seconds_
+_Generated in *1.37* seconds_
 
 
 
@@ -1030,7 +1031,7 @@ _Generated in *1.70* seconds_
 
 
 
-_Generated in *1.30* seconds_
+_Generated in *1.33* seconds_
 
 
 
@@ -1060,7 +1061,7 @@ The catch is that Echo and Nova are from different factions that have been at od
 
 
 
-_Generated in *10.93* seconds_
+_Generated in *10.45* seconds_
 
 
 
@@ -1084,7 +1085,7 @@ Why, you ask? Well, my tech-savvy friend, let me tell you why! 🤔
 
 
 
-_Generated in *10.46* seconds_
+_Generated in *11.13* seconds_
 
 
 
@@ -1107,7 +1108,7 @@ In short, if you're looking for a language model that will provide you with hone
 
 
 
-_Generated in *10.92* seconds_
+_Generated in *10.24* seconds_
 
 
 
@@ -1118,7 +1119,7 @@ _Generated in *10.92* seconds_
 
 ### Text Classification
 
-Workers AI provides models that are specific for [Text Classification](https://developers.cloudflare.com/workers-ai/models/text-classification/), but since these models, specifically called it out, we should let them show off their skills.
+Workers AI provides models that are specific for [Text Classification](/workers-ai/models/text-classification/), but since these models, specifically called it out, we should let them show off their skills.
 
 
 ```python
@@ -1164,7 +1165,7 @@ The sentiment of the text is positive.
 
 
 
-_Generated in *0.93* seconds_
+_Generated in *1.96* seconds_
 
 
 
@@ -1180,7 +1181,7 @@ The text "Sometimes choosing things is hard" can be classified as neutral. The s
 
 
 
-_Generated in *1.20* seconds_
+_Generated in *3.32* seconds_
 
 
 
@@ -1198,7 +1199,7 @@ Sentiment: Positive
 
 
 
-_Generated in *2.47* seconds_
+_Generated in *1.24* seconds_
 
 
 
@@ -1214,7 +1215,7 @@ The sentiment of the text is neutral.
 
 
 
-_Generated in *3.03* seconds_
+_Generated in *2.08* seconds_
 
 
 
@@ -1230,7 +1231,7 @@ The sentiment of the text is positive.
 
 
 
-_Generated in *1.81* seconds_
+_Generated in *0.89* seconds_
 
 
 
@@ -1257,7 +1258,7 @@ _Generated in *1.81* seconds_
 
 
 
-_Generated in *0.40* seconds_
+_Generated in *0.82* seconds_
 
 
 
@@ -1273,7 +1274,7 @@ _Generated in *0.40* seconds_
 
 
 
-_Generated in *1.06* seconds_
+_Generated in *2.06* seconds_
 
 
 
@@ -1289,7 +1290,7 @@ _Generated in *1.06* seconds_
 
 
 
-_Generated in *1.91* seconds_
+_Generated in *2.13* seconds_
 
 
 
@@ -1305,7 +1306,7 @@ _Generated in *1.91* seconds_
 
 
 
-_Generated in *0.59* seconds_
+_Generated in *0.79* seconds_
 
 
 
@@ -1321,7 +1322,7 @@ _Generated in *0.59* seconds_
 
 
 
-_Generated in *0.67* seconds_
+_Generated in *1.93* seconds_
 
 
 
