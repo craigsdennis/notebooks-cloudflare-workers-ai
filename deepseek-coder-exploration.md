@@ -7,15 +7,24 @@ Let's explore them using the API!
 
 ```python
 import sys
-!{sys.executable} -m pip install requests python-dotenv
+!{sys.executable} -m pip install python-dotenv
+!{sys.executable} -m pip install --pre cloudflare
 ```
 
-    Requirement already satisfied: requests in ./venv/lib/python3.12/site-packages (2.31.0)
-    Requirement already satisfied: python-dotenv in ./venv/lib/python3.12/site-packages (1.0.1)
-    Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.12/site-packages (from requests) (3.3.2)
-    Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.12/site-packages (from requests) (3.6)
-    Requirement already satisfied: urllib3<3,>=1.21.1 in ./venv/lib/python3.12/site-packages (from requests) (2.1.0)
-    Requirement already satisfied: certifi>=2017.4.17 in ./venv/lib/python3.12/site-packages (from requests) (2023.11.17)
+    Requirement already satisfied: python-dotenv in /Users/craig/Code/scratch/test-unum-over-bias/venv/lib/python3.12/site-packages (1.0.1)
+    Requirement already satisfied: cloudflare in /Users/craig/Code/scratch/test-unum-over-bias/venv/lib/python3.12/site-packages (3.0.0b7)
+    Requirement already satisfied: anyio<5,>=3.5.0 in /Users/craig/Code/scratch/test-unum-over-bias/venv/lib/python3.12/site-packages (from cloudflare) (4.3.0)
+    Requirement already satisfied: distro<2,>=1.7.0 in /Users/craig/Code/scratch/test-unum-over-bias/venv/lib/python3.12/site-packages (from cloudflare) (1.9.0)
+    Requirement already satisfied: httpx<1,>=0.23.0 in /Users/craig/Code/scratch/test-unum-over-bias/venv/lib/python3.12/site-packages (from cloudflare) (0.27.0)
+    Requirement already satisfied: pydantic<3,>=1.9.0 in /Users/craig/Code/scratch/test-unum-over-bias/venv/lib/python3.12/site-packages (from cloudflare) (2.7.0)
+    Requirement already satisfied: sniffio in /Users/craig/Code/scratch/test-unum-over-bias/venv/lib/python3.12/site-packages (from cloudflare) (1.3.1)
+    Requirement already satisfied: typing-extensions<5,>=4.7 in /Users/craig/Code/scratch/test-unum-over-bias/venv/lib/python3.12/site-packages (from cloudflare) (4.11.0)
+    Requirement already satisfied: idna>=2.8 in /Users/craig/Code/scratch/test-unum-over-bias/venv/lib/python3.12/site-packages (from anyio<5,>=3.5.0->cloudflare) (3.6)
+    Requirement already satisfied: certifi in /Users/craig/Code/scratch/test-unum-over-bias/venv/lib/python3.12/site-packages (from httpx<1,>=0.23.0->cloudflare) (2024.2.2)
+    Requirement already satisfied: httpcore==1.* in /Users/craig/Code/scratch/test-unum-over-bias/venv/lib/python3.12/site-packages (from httpx<1,>=0.23.0->cloudflare) (1.0.4)
+    Requirement already satisfied: h11<0.15,>=0.13 in /Users/craig/Code/scratch/test-unum-over-bias/venv/lib/python3.12/site-packages (from httpcore==1.*->httpx<1,>=0.23.0->cloudflare) (0.14.0)
+    Requirement already satisfied: annotated-types>=0.4.0 in /Users/craig/Code/scratch/test-unum-over-bias/venv/lib/python3.12/site-packages (from pydantic<3,>=1.9.0->cloudflare) (0.6.0)
+    Requirement already satisfied: pydantic-core==2.18.1 in /Users/craig/Code/scratch/test-unum-over-bias/venv/lib/python3.12/site-packages (from pydantic<3,>=1.9.0->cloudflare) (2.18.1)
 
 
 
@@ -24,8 +33,7 @@ import os
 from getpass import getpass
 
 from IPython.display import display, Image, Markdown, Audio
-
-import requests
+from cloudflare import Cloudflare
 ```
 
 
@@ -36,14 +44,16 @@ import requests
 
 ### Configuring your environment
 
-To use the API you'll need your [Cloudflare Account ID](https://dash.cloudflare.com) (head to Workers & Pages > Overview > Account details > Account ID) and a [Workers AI enabled API Token](https://dash.cloudflare.com/profile/api-tokens).
+To use the API you'll need your [Cloudflare Account ID](https://dash.cloudflare.com). Head to AI > Workers AI page and press the "Use REST API". This page will let you create a new API Token and copy your Account ID.
 
-If you want to add these files to your environment, you can create a new file named `.env`
+If you want to add these values to your environment variables, you can **create a new file** named `.env` and this notebook will read those values.
 
 ```bash
 CLOUDFLARE_API_TOKEN="YOUR-TOKEN"
 CLOUDFLARE_ACCOUNT_ID="YOUR-ACCOUNT-ID"
 ```
+
+Otherwise you can just enter the values securely when prompted below.
 
 
 ```python
@@ -61,25 +71,27 @@ else:
     account_id = getpass("Enter your account id")
 ```
 
+
+```python
+client = Cloudflare(api_token=api_token)
+```
+
 ### Generate code from a comment
 
 A common use case is to complete the code for the user after they provide a descriptive comment.
 
 
 ```python
-model = "@hf/thebloke/deepseek-coder-6.7b-base-awq"
-
 prompt = "# A function that checks if a given word is a palindrome"
 
-response = requests.post(
-    f"https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run/{model}",
-    headers={"Authorization": f"Bearer {api_token}"},
-    json={"messages": [
+result = client.workers.ai.run(
+    "@hf/thebloke/deepseek-coder-6.7b-base-awq",
+    account_id=account_id,
+    messages=[
         {"role": "user", "content": prompt}
-    ]}
+    ]
 )
-inference = response.json()
-code = inference["result"]["response"]
+code = result["response"]
 
 display(Markdown(f"""
     ```python
@@ -121,24 +133,26 @@ We've all been there, bugs happen. Sometimes those stacktraces can be very intim
 ```python
 model = "@hf/thebloke/deepseek-coder-6.7b-instruct-awq"
 
-system_message = "The user is going to give you code that isn't working. Explain to the user what might be wrong"
+system_message = """
+The user is going to give you code that isn't working. 
+Explain to the user what might be wrong
+"""
 
 code = """# Welcomes our user
 def hello_world(first_name="World"):
     print(f"Hello, {name}!")
 """
 
-response = requests.post(
-    f"https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run/{model}",
-    headers={"Authorization": f"Bearer {api_token}"},
-    json={"messages": [
+result = client.workers.ai.run(
+    "@hf/thebloke/deepseek-coder-6.7b-instruct-awq",
+    account_id=account_id,
+    messages=[
         {"role": "system", "content": system_message},
         {"role": "user", "content": code},
-    ]}
+    ]
 )
-inference = response.json()
-response = inference["result"]["response"]
-display(Markdown(response))
+
+display(Markdown(result["response"]))
 ```
 
 
@@ -152,7 +166,75 @@ def hello_world(first_name="World"):
     print(f"Hello, {first_name}")
 ```
 
-Now, when you call `hello_world()`, it will print "Hello, World" by default. If you call `hello_world("John")`, it will print "Hello, John".
+This function will print "Hello, World" if no arguments are passed to it, or "Hello, [User's Name]" if a string argument is passed.
+
+For example:
+
+```python
+hello_world()
+```
+
+Output:
+
+```
+Hello, World
+```
+
+And:
+
+```python
+hello_world("John")
+```
+
+Output:
+
+```
+Hello, John
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -179,17 +261,15 @@ class User:
         return self.first_name + " " + self.last_name
 """
 
-response = requests.post(
-    f"https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run/{model}",
-    headers={"Authorization": f"Bearer {api_token}"},
-    json={"messages": [
+result = client.workers.ai.run(
+    "@hf/thebloke/deepseek-coder-6.7b-instruct-awq",
+    account_id=account_id,
+    messages=[
         {"role": "system", "content": system_message},
         {"role": "user", "content": code},
-    ]}
+    ]
 )
-inference = response.json()
-response = inference["result"]["response"]
-display(Markdown(response))
+display(Markdown(result["response"]))
 ```
 
 
@@ -216,9 +296,10 @@ if __name__ == '__main__':
 In this test case, we have two tests:
 
 - `test_full_name` tests the `full_name` method when the user has both a first name and a last name.
-- `test_default_last_name` tests the `full_name` method when the user only has a first name and the last name is set to "Mc" + first name.
+- `test_default_last_name` tests the `full_name` method when the user only has a first name and the last name is set to "Mc" + first name by default.
 
-If all these tests pass, it means that the `full_name` method is working as expected. If any of these tests fail, it
+You can run these tests by executing the script. If everything is working correctly, you should see output indicating that both tests passed.
+
 
 
 ### Fill-in-the-middle Code Completion
@@ -243,18 +324,17 @@ def send_email(email_address, body):
     return email_service.send(email_address, body)<｜fim▁end｜>
 """
 
-response = requests.post(
-    f"https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run/{model}",
-    headers={"Authorization": f"Bearer {api_token}"},
-    json={"messages": [
+result = client.workers.ai.run(
+    "@hf/thebloke/deepseek-coder-6.7b-base-awq",
+    account_id=account_id,
+    messages=[
         {"role": "user", "content": code}
-    ]}
+    ]
 )
-inference = response.json()
-response = inference["result"]["response"]
+
 display(Markdown(f"""
     ```python
-    {response.strip()}
+    {result["response"].strip()}
     ```
 """))
 
@@ -320,19 +400,17 @@ Return JSON only. Do not explain or provide usage examples.
 prompt = """Hey there, I'm Craig Dennis and I'm a Developer Educator at Cloudflare. My email is craig@cloudflare.com. 
             I am very interested in AI. I've got two kids. I love tacos, burritos, and all things Cloudflare"""
 
-response = requests.post(
-    f"https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/run/{model}",
-    headers={"Authorization": f"Bearer {api_token}"},
-    json={"messages": [
+result = client.workers.ai.run(
+    "@hf/thebloke/deepseek-coder-6.7b-instruct-awq",
+    account_id=account_id,
+    messages=[
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": prompt}
-    ]}
+    ]
 )
-inference = response.json()
-response = inference["result"]["response"]
 display(Markdown(f"""
     ```json
-    {response.strip()}
+    {result["response"].strip()}
     ```
 """))
 ```
